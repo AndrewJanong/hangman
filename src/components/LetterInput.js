@@ -19,6 +19,9 @@ export default function LetterInput({selectedWord, correctLetters, wrongLetters,
         } else {
             console.log('Please enter a letter a-z or A-Z')
         }
+
+        inputRef.current.value = '';
+        setInput('');
     }
 
     const handleChange = () => {

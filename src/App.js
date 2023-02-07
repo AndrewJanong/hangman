@@ -2,21 +2,24 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Figure from './components/Figure';
-//import UsedWords from './components/UsedWords';
 import Word from './components/Word';
 import WrongLetters from './components/WrongLetters';
 import LetterInput from './components/LetterInput';
+import Win from './components/Win';   
+import Lose from './components/Lose';
 
 
-const words = ['application', 'programming', 'interface', 'wizard'];
+const words = ['python', 'javascript', 'go', 'java', 'kotlin', 'PHP', 'Swift', 'R', 'Ruby', 'TypeScript', 'HTML', 'CSS', 'nosql', 'Rust']
 let selectedWord = words[Math.floor(Math.random() * words.length)];
-console.log(selectedWord);
 
 function App() {
-  
-  //const [playable, setPlayable] = useState(true);
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
+
+
+  console.log(selectedWord);
+
+  
 
   function addLetter(letter, arrType) {
     if (arrType === "correct") {
@@ -27,12 +30,6 @@ function App() {
   }
 
   function checkWin() {
-    /*
-    return selectedWord.toUpperCase().split('').reduce((letter, status) => {
-      return correctLetters.includes(letter) && status
-    }, true);
-    */
-
     let win = true;
 
     let selected = selectedWord.toUpperCase().split('');
@@ -41,17 +38,17 @@ function App() {
     }
 
     return win;
-
   }
 
   function checkLose() {
-
     return wrongLetters.length >= 6;
-
   }
 
-  console.log("HI");
-  console.log(checkWin())
+  function reset() {
+    selectedWord = words[Math.floor(Math.random() * words.length)];
+    setCorrectLetters([]);
+    setWrongLetters([]);
+  }
 
   return (
     <div className='root'>
@@ -61,11 +58,13 @@ function App() {
           <Figure wrongLetters={wrongLetters}/>
           <div>
             <WrongLetters wrongLetters={wrongLetters}/>
-            <LetterInput selectedWord={selectedWord} correctLetters={correctLetters} wrongLetters={wrongLetters} addLetter={addLetter}/>
+            {(!checkWin() && !checkLose()) && <LetterInput selectedWord={selectedWord} correctLetters={correctLetters} wrongLetters={wrongLetters} addLetter={addLetter}/>}
           </div>
         </div>
-        {checkWin() ? <p>YOU WON</p> : <Word selectedWord={selectedWord} correctLetters={correctLetters} />}
-        {checkLose() && <p>YOU LOST</p>}
+        {checkWin() 
+          ? <Win reset={reset}/>
+          : <Word selectedWord={selectedWord} correctLetters={correctLetters} />}
+        {checkLose() && <Lose reset={reset} selectedWord={selectedWord} />}
       </div>
     </div>
   );

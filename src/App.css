@@ -3,15 +3,24 @@
 * {
     margin: 0;
     font-family: 'Quicksand', sans-serif;
-    background-color: #fff;
+}
 
+button {
+    border: none;
+    font-weight: 600;
+    color: black;
 }
 
 .root {
+    height: 100vh;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+}
+
+.header {
+    text-align: center;
 }
   
 .figure-container {
@@ -21,42 +30,106 @@
     stroke-linecap: round;
 }
 
-.word {
+.game-container {
+    margin: 48px 0;
+    padding: 8px;
+    width: 80%;
     display: flex;
-    justify-content: center;
-    padding: 5px;
-    height: 30px;
-    border: 1px solid black;
-}
-
-.letter {
-    margin: 0 3px;
-    width: 20px;
-    border-bottom: 1px solid black;
-
+    flex-direction: column;
+    align-items: center;
+    border-radius: 18px;
+    background-color: #eeeeee;
 }
 
 .game-container > div {
-    border: 1px solid black;
     display: flex;
+    justify-content: center;
     width: 100%;
 }
 
 .game-container > div > div {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    width: 144px;
+    margin-left: 64px;
 }
 
 .wrong-letters {
-    border: 1px solid black;
+    text-align: center;
+}
+
+.wrong-letters span {
+    margin: 0 2px;
 }
 
 .letter-input {
-    border: 1px solid black;
+    text-align: center;
+    height: 50px;
 }
 
 .letter-input input {
     width: 20px;
+}
+
+.letter-input button {
+    margin-left: 8px;
+    height: 24px;
+    width: 64px;
+    border-radius: 10px;
+    background-color: #f1ee8e;
+
+}
+
+.letter-input button:hover {
+    background-color: #ece75f;
+}
+
+.letter-input button:disabled {
+    background-color: #cccccc;
+    color: #aaaaaa;
+}
+
+.word {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    height: 40px;
+}
+
+.letter {
+    margin: 0 3px;
+    height: 1.5rem;
+    width: 20px;
+    border-bottom: 1px solid black;
+    text-align: center;
+
+}
+
+.win, .lose {
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.win button, .lose button {
+    width: 96px;
+    height: 24px;
+    margin-top: 8px;
+    border-radius: 10px;
+    background-color: #ff4122;
+}
+
+.lose button {
+    background-color: #fb3b1e;
+}
+
+.win button {
+    background-color: #07da63;
+}
+
+.win button:hover {
+    background-color: #06c258;
 }
